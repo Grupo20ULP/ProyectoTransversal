@@ -4,10 +4,17 @@
  */
 package AccesoDatos;
 
+import com.sun.jdi.connect.spi.Connection;
+
 /**
  *
  * @author abate
  */
 public class AlumnoData {
+    private Connection con=null;
+
+    public AlumnoData() {
+        con = Conexion.getConectar();
+    }
     
 }
