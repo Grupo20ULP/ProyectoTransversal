@@ -4,6 +4,8 @@
  */
 package proyectotransversal;
 
+import Vistas.MenuPrincipal;
+
 /**
  *
  * @author abate
@@ -13,8 +15,8 @@ public class ProyectoTransversal {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args){
+            MenuPrincipal.main(args);
     }
     
 }
