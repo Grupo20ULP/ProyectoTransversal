@@ -4,10 +4,11 @@
  */
 package AccesoDatos;
 
-import com.sun.jdi.connect.spi.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Connection;
 
 /**
  *

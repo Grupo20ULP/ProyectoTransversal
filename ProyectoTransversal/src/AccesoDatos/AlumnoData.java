@@ -4,7 +4,15 @@
  */
 package AccesoDatos;
 
-import com.sun.jdi.connect.spi.Connection;
+import Entidades.Alumno;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Connection;
 
 /**
  *
@@ -16,5 +24,27 @@ public class AlumnoData {
     public AlumnoData() {
         con = Conexion.getConectar();
     }
+    public void agregarAlumno(Alumno alum){
+        String sql = "INSERT INTO alumno(dni,apellido,nombre,fechaNacimiento,estado)" + "VALUES(,?,?,?,?,?)";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, alum.getDni());
+            ps.setString(2, alum.getApellido());
+            ps.setString(3, alum.getNombre());
+            ps.setDate(4, Date.valueOf(alum.getFechaNacimiento()));
+            ps.setBoolean(5, alum.isEstado());
+            
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                alum.setIdAlumno(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Se agrego correctamente el alumno");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar el alumno "+e.getMessage());
+        }
+    }
+    
     
 }
