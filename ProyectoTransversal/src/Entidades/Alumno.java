@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * @author abate
  */
 public class Alumno {
-    
+
     private int idAlumno;
     private int dni;
     private String apellido;
@@ -19,7 +19,7 @@ public class Alumno {
     private LocalDate fechaNacimiento;
     private boolean estado;
 
-    public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean estado) {
+    public Alumno (int idAlumno, int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean estado) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.apellido = apellido;
@@ -28,7 +28,7 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public Alumno(int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean estado) {
+    public Alumno (int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -36,63 +36,62 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public Alumno() {
+    public Alumno () {
     }
 
-    public int getIdAlumno() {
+    public int getIdAlumno () {
         return idAlumno;
     }
 
-    public void setIdAlumno(int idAlumno) {
+    public void setIdAlumno (int idAlumno) {
         this.idAlumno = idAlumno;
     }
 
-    public int getDni() {
+    public int getDni () {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni (int dni) {
         this.dni = dni;
     }
 
-    public String getApellido() {
+    public String getApellido () {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
+    public void setApellido (String apellido) {
         this.apellido = apellido;
     }
 
-    public String getNombre() {
+    public String getNombre () {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre (String nombre) {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public LocalDate getFechaNacimiento () {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento (LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean isEstado() {
+    public boolean isEstado () {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado (boolean estado) {
         this.estado = estado;
     }
-    
-    
 
     @Override
-    public String toString() {
-        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", estado=" + estado + '}';
+    public String toString () {
+        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni
+            + ", apellido=" + apellido + ", nombre=" + nombre
+            + ", fechaNacimiento=" + fechaNacimiento + ", estado=" + estado
+            + '}';
     }
-    
-    
 }
