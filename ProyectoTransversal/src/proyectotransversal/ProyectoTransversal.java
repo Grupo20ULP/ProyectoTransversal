@@ -8,7 +8,7 @@ import Vistas.MenuPrincipal;
 
 /**
  *
- * @author abate, Gomez Heber
+ * @author abate, Gomez Heber,CarrerasJuan
  */
 public class ProyectoTransversal {
 
