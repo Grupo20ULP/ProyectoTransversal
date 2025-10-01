@@ -6,7 +6,7 @@ package Vistas;
 
 /**
  *
- * @author abate
+ * @author abate, Gomez Heber
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 

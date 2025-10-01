@@ -14,7 +14,7 @@ import org.mariadb.jdbc.Connection;
 
 /**
  *
- * @author abate
+ * @author abate, Gomez Heber
  */
 public class AlumnoData {
 
