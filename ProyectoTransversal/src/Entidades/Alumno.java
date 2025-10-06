@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author abate, Gomez Heber
+ * @author abate, Gomez Heber, Galan Federico
  */
 public class Alumno {
 
