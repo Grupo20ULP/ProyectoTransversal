@@ -157,3 +157,42 @@ public class AlumnoData {
     
 
 }
+=======
+    public void borrarAlumno (Alumno id) {
+        String sql
+            = "Update Alumno SET estado = 0 WHERE idAlumno = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id.getIdAlumno());
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null,
+                    "Alumno eliminado correctamente");
+            }
+            else {
+                JOptionPane.showMessageDialog(null,
+                    "No se encontro el ID " + id + " de ese Alumno ");
+            }
+            ps.close();
+        }
+        catch (Exception e) {
+            JOptionPane.
+                showMessageDialog(null, "Erro al eliminar al Alumno " + e.
+                    getMessage());
+        }
+    }
+
+    public void buscarAlumno (Alumno bAlumno) {
+        
+        bAlumno = null;
+        
+        String sql
+            = "SELECT * from Alumno WHERE idAlumno = ?";
+        try {
+            
+        }
+        catch (Exception e) {
+        }
+    }
+}
+>>>>>>> 5c5e6c45ba5401e54b467de05704a05bccd2ee5d
