@@ -4,7 +4,10 @@
  */
 package proyectotransversal;
 
+import Modelo.Alumno;
+import Persistencia.AlumnoData;
 import Vistas.MenuPrincipal;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,6 +19,10 @@ public class ProyectoTransversal {
      * @param args the command line arguments
      */
     public static void main (String[] args) {
-        MenuPrincipal.main(args);
+        
+        AlumnoData ad = new AlumnoData();
+        Alumno alum= new Alumno(23325841, "Gomez", "Heber", LocalDate.of(2000, 1, 20), true);
+        ad.agregarAlumno(alum);
+        
     }
 }

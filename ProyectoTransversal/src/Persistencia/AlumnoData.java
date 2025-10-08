@@ -27,7 +27,7 @@ public class AlumnoData {
     public void agregarAlumno (Alumno alum) {
         String sql
             = "INSERT INTO alumno(dni,apellido,nombre,fechaNacimiento,estado)"
-            + "VALUES(,?,?,?,?,?)";
+            + "VALUES(?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
@@ -36,6 +36,7 @@ public class AlumnoData {
             ps.setString(3, alum.getNombre());
             ps.setDate(4, java.sql.Date.valueOf(alum.getFechaNacimiento()));
             ps.setBoolean(5, alum.isEstado());
+            ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alum.setIdAlumno(rs.getInt(1));
