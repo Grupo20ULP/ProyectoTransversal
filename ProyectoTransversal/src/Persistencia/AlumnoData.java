@@ -5,8 +5,8 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;  // ← Agregar este import
-import java.util.List;       // ← Agregar este import
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Connection;
 
@@ -82,7 +82,7 @@ public class AlumnoData {
         return alumno;
     }
 
-    public List<Alumno> listarAlumnosActivos () {
+    public List<Alumno> actualizarAlumno () {
         List<Alumno> alumnos = new ArrayList<>();
         String sql
             = "SELECT * FROM alumno WHERE estado = true ORDER BY apellido, nombre";
@@ -109,7 +109,7 @@ public class AlumnoData {
         return alumnos;
     }
 
-    public void editarAlumno (Alumno alumno) {
+    public void altaLogica (Alumno alumno) {
         String sql
             = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ?, estado = ? WHERE idAlumno = ?";
         try {
@@ -137,7 +137,7 @@ public class AlumnoData {
         }
     }
 
-    public void eliminarAlumno (int idAlumno) {
+    public void bajaLogica (int idAlumno) {
         String sql = "UPDATE alumno SET estado = false WHERE idAlumno = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -156,30 +156,6 @@ public class AlumnoData {
         catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar alumno: "
                 + e.getMessage());
-        }
-    }
-
-    public void borrarAlumno (Alumno id) {
-        String sql
-            = "Update Alumno SET estado = 0 WHERE idAlumno = ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id.getIdAlumno());
-            int filasAfectadas = ps.executeUpdate();
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null,
-                    "Alumno eliminado correctamente");
-            }
-            else {
-                JOptionPane.showMessageDialog(null,
-                    "No se encontro el ID " + id + " de ese Alumno ");
-            }
-            ps.close();
-        }
-        catch (Exception e) {
-            JOptionPane.
-                showMessageDialog(null, "Erro al eliminar al Alumno " + e.
-                    getMessage());
         }
     }
 }

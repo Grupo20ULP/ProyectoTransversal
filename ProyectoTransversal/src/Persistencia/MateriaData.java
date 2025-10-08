@@ -4,6 +4,9 @@
  */
 package Persistencia;
 
+import Modelo.Materia;
+import org.mariadb.jdbc.Connection;
+
 /**
  *
  * @author Juan
