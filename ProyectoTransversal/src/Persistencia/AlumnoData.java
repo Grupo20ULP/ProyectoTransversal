@@ -156,8 +156,8 @@ public class AlumnoData {
 
     
 
-}
-=======
+
+
     public void borrarAlumno (Alumno id) {
         String sql
             = "Update Alumno SET estado = 0 WHERE idAlumno = ?";
@@ -195,4 +195,4 @@ public class AlumnoData {
         }
     }
 }
->>>>>>> 5c5e6c45ba5401e54b467de05704a05bccd2ee5d
+

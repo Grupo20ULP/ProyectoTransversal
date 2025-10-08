@@ -20,13 +20,7 @@ public class ProyectoTransversal {
      */
     public static void main (String[] args) {
         
-        AlumnoData ad = new AlumnoData();
-        Alumno alum= new Alumno(23325841, "Gomez", "Heber", LocalDate.of(2000, 1, 20), true);
-        ad.agregarAlumno(alum);
-        Alumno al = new Alumno(123412312, "asdas", "hfaoshfas", LocalDate.of(2010, 1, 20), true);
-        ad.agregarAlumno(al);
-        
-        ad.borrarAlumno(al.getIdAlumno(7));
+
         
     }
 }
