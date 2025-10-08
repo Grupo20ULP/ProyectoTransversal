@@ -32,10 +32,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemFormulariosMaterias = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItemFormulariosAlumno = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemFormulariodeInscripcion = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -61,23 +62,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Materias");
 
-        jMenuItem3.setText("jMenuItem3");
-        jMenu3.add(jMenuItem3);
+        jMenuItemFormulariosMaterias.setText("Formularios de Materias");
+        jMenuItemFormulariosMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFormulariosMateriasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemFormulariosMaterias);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Alumnos");
+
+        jMenuItemFormulariosAlumno.setText("Formularios de Alumno");
+        jMenuItemFormulariosAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFormulariosAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemFormulariosAlumno);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Inscripciones");
 
-        jMenuItem2.setText("Formulario de Inscripciones");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFormulariodeInscripcion.setText("Formulario de Inscripciones");
+        jMenuItemFormulariodeInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemFormulariodeInscripcionActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem2);
+        jMenu5.add(jMenuItemFormulariodeInscripcion);
 
         jMenuBar1.add(jMenu5);
 
@@ -103,9 +118,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItemFormulariodeInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariodeInscripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItemFormulariodeInscripcionActionPerformed
+
+    private void jMenuItemFormulariosMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosMateriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemFormulariosMateriasActionPerformed
+
+    private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemFormulariosAlumnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +184,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItemFormulariodeInscripcion;
+    private javax.swing.JMenuItem jMenuItemFormulariosAlumno;
+    private javax.swing.JMenuItem jMenuItemFormulariosMaterias;
     // End of variables declaration//GEN-END:variables
 }
