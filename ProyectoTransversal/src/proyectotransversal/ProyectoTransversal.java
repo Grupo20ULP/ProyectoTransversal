@@ -23,11 +23,11 @@ public class ProyectoTransversal {
      */
     public static void main (String[] args) {
         AlumnoData ad = new AlumnoData();
-        Alumno alm = new Alumno(1231231312, "gomez", "heber", LocalDate.of(2020,
+        Alumno alm = new Alumno(645645645, "gomez", "heber", LocalDate.of(2020,
             10, 15), true);
         ad.guardarAlumno(alm);
         ad.eliminarAlumno(1);
-        Alumno alumno1 = new Alumno(40123456, "Perez", "Juan", LocalDate.
+        Alumno alumno1 = new Alumno(879879797, "Perez", "Juan", LocalDate.
             of(1999, 5, 15), true);
         ad.guardarAlumno(alumno1);
         List<Alumno> alumnos = ad.listarAlumnosActivos();
