@@ -27,7 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -37,19 +37,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItemFormulariosAlumno = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItemFormulariodeInscripcion = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        JMenuNotas = new javax.swing.JMenu();
+        jMenuNotas = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
+        Escritorio.setLayout(EscritorioLayout);
+        EscritorioLayout.setHorizontalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 880, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        EscritorioLayout.setVerticalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 654, Short.MAX_VALUE)
         );
 
@@ -96,8 +97,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Carga de Notas");
-        jMenuBar1.add(jMenu6);
+        JMenuNotas.setText("Carga de Notas");
+        JMenuNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JMenuNotasMouseClicked(evt);
+            }
+        });
+        JMenuNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuNotasActionPerformed(evt);
+            }
+        });
+
+        jMenuNotas.setText("Cargar y Edicion");
+        jMenuNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuNotasActionPerformed(evt);
+            }
+        });
+        JMenuNotas.add(jMenuNotas);
+
+        jMenuBar1.add(JMenuNotas);
 
         jMenu7.setText("Consultas");
         jMenuBar1.add(jMenu7);
@@ -108,11 +128,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(Escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(Escritorio)
         );
 
         pack();
@@ -129,6 +149,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemFormulariosAlumnoActionPerformed
+
+    private void JMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuNotasActionPerformed
+
+    }//GEN-LAST:event_JMenuNotasActionPerformed
+
+    private void JMenuNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuNotasMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_JMenuNotasMouseClicked
+
+    private void jMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNotasActionPerformed
+        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint(); 
+        VistaCargaNotas vi = new VistaCargaNotas();
+        vi.setVisible(true);
+        Escritorio.add(vi);
+        Escritorio.moveToFront(vi);
+    }//GEN-LAST:event_jMenuNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,17 +214,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenu JMenuNotas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemFormulariodeInscripcion;
     private javax.swing.JMenuItem jMenuItemFormulariosAlumno;
     private javax.swing.JMenuItem jMenuItemFormulariosMaterias;
+    private javax.swing.JMenuItem jMenuNotas;
     // End of variables declaration//GEN-END:variables
 }
