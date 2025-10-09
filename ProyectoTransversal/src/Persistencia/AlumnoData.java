@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import org.mariadb.jdbc.Connection;
+import java.sql.Connection;
+
 
 /**
  *
@@ -19,7 +20,7 @@ public class AlumnoData {
     private Connection con = null;
 
     public AlumnoData () {
-        con = Conexion.getConectar();
+        con = (Connection) Conexion.getConectar();
     }
 
     public void guardarAlumno (Alumno alumno) {
