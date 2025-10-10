@@ -4,18 +4,89 @@
  */
 package Vistas;
 
-/**
- *
- * @author TuMachGalan
- */
+import Modelo.Alumno;
+import Persistencia.AlumnoData;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 public class VistaCargaNotas extends javax.swing.JInternalFrame {
+
+    private AlumnoData alumnoData;
+    private DefaultComboBoxModel<String> comboModel;
 
     /**
      * Creates new form VistaCargaNotas
      */
     public VistaCargaNotas() {
         initComponents();
+        inicializarComponentes();
     }
+
+    private void inicializarComponentes() {
+        try {
+            // Inicializar AlumnoData
+            alumnoData = new AlumnoData();
+            
+            // Inicializar el modelo del combo
+            comboModel = new DefaultComboBoxModel<>();
+            jComboBoxAlumnos.setModel(comboModel);
+            
+            // Cargar alumnos
+            cargarAlumnosEnComboBox();
+            
+            // Configurar botones
+            jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 
+                }
+            });
+            
+            jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    cancelar();
+                }
+            });
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al inicializar: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void cargarAlumnosEnComboBox() {
+        try {
+            comboModel.removeAllElements();
+            comboModel.addElement("Seleccione un alumno");
+            List<Alumno> alumnos = alumnoData.actualizarAlumno();
+            
+            if (alumnos != null && !alumnos.isEmpty()) {
+                for (Alumno alumno : alumnos) {
+                    String item = alumno.getIdAlumno() + " - " + 
+                                 alumno.getApellido() + ", " + 
+                                 alumno.getNombre() + 
+                                 " (DNI: " + alumno.getDni() + ")";
+                    comboModel.addElement(item);
+                }
+            } else {
+                comboModel.addElement("No hay alumnos registrados");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al cargar alumnos: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            comboModel.addElement("Error al cargar datos");
+        }
+    }
+
+    private void cancelar() {
+        this.dispose();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +161,7 @@ public class VistaCargaNotas extends javax.swing.JInternalFrame {
                         .addGap(119, 119, 119)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,7 +201,6 @@ public class VistaCargaNotas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;

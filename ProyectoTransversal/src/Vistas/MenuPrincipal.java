@@ -13,9 +13,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
+
     public MenuPrincipal () {
         initComponents();
         setLocationRelativeTo(null);
+        cargarAlumnos();
     }
  
     /**
@@ -168,7 +170,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(vi);
         Escritorio.moveToFront(vi);
     }//GEN-LAST:event_jMenuNotasActionPerformed
-
+    public void cargarAlumnos(){
+        
+    }
     /**
      * @param args the command line arguments
      */
