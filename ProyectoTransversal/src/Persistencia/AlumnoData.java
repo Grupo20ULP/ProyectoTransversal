@@ -10,8 +10,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 
-
-
 /**
  *
  * @author abate, Gomez Heber, Galan Federico, Carreño Lucas
@@ -21,7 +19,7 @@ public class AlumnoData {
     private Connection con = null;
 
     public AlumnoData () {
-        con =  Conexion.getConectar();
+        con = Conexion.getConectar();
     }
 
     public void guardarAlumno (Alumno alumno) {

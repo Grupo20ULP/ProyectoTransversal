@@ -13,13 +13,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-
     public MenuPrincipal () {
         initComponents();
         setLocationRelativeTo(null);
         cargarAlumnos();
     }
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,7 +148,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemFormulariosMateriasActionPerformed
 
     private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
-        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaAlumnos al= new VistaAlumnos();
+        al.setVisible(true);
+        Escritorio.add(al);
+        Escritorio.moveToFront(al);
     }//GEN-LAST:event_jMenuItemFormulariosAlumnoActionPerformed
 
     private void JMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuNotasActionPerformed
@@ -164,15 +168,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNotasActionPerformed
         // TODO add your handling code here:
         Escritorio.removeAll();
-        Escritorio.repaint(); 
+        Escritorio.repaint();
         VistaCargaNotas vi = new VistaCargaNotas();
         vi.setVisible(true);
         Escritorio.add(vi);
         Escritorio.moveToFront(vi);
     }//GEN-LAST:event_jMenuNotasActionPerformed
-    public void cargarAlumnos(){
-        
+    public void cargarAlumnos () {
     }
+
     /**
      * @param args the command line arguments
      */
