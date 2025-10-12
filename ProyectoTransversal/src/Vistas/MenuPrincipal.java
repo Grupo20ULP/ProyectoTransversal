@@ -163,7 +163,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemFormulariosMateriasActionPerformed
 
     private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
-
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaAlumnos al = new VistaAlumnos();
+        al.setVisible(true);
+        Escritorio.add(al);
+        Escritorio.moveToFront(al);
     }//GEN-LAST:event_jMenuItemFormulariosAlumnoActionPerformed
 
     private void JMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuNotasActionPerformed
@@ -193,10 +198,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Escritorio.removeAll();
         Escritorio.repaint();
-        VistaAlumnoMateria am = new VistaAlumnoMateria();
+        VistaAlumnoMaterias am = new VistaAlumnoMaterias();
         am.setVisible(true);
         Escritorio.add(am);
         Escritorio.moveToFront(am);
+        // con esto van a centrar la ventana que crearon
+        int x = (Escritorio.getWidth() - am.getWidth()) / 2;
+        int y = (Escritorio.getHeight() - am.getHeight()) / 2;
+        am.setLocation(x, y);
     }//GEN-LAST:event_jMenuItemListarInscripcionActionPerformed
     public void cargarAlumnos () {
     }
