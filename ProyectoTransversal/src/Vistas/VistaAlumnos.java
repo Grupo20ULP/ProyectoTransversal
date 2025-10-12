@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaAlumnos extends javax.swing.JPanel {
     
-    // LOGICA Y UTILIDADES ---
+    // LOGICA Y UTILIDADES
 private final AlumnoData alumnoData = new AlumnoData();
 private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCTOR
@@ -379,7 +379,7 @@ private Alumno leerFormulario(boolean conId) {
     String f      = txtFecha.getText().trim();
     boolean activo= checkbox1.getState();
 
-    // Si quedó el placeholder "(AAAA-MM-DD)", consideralo como vacío
+    // Si queda el placeholder "(AAAA-MM-DD)", considerarlo como vacío
     if (f.equalsIgnoreCase("(AAAA-MM-DD)")) { f = ""; }
 
     if (dniStr.isEmpty() || ape.isEmpty() || nom.isEmpty() || f.isEmpty()) {
@@ -427,5 +427,17 @@ private Alumno leerFormulario(boolean conId) {
     
     // Devuelve el alumno armado
     return a;
+}
+
+
+public static void main(String[] args) {
+    javax.swing.SwingUtilities.invokeLater(() -> {
+        javax.swing.JFrame f = new javax.swing.JFrame("Vista Alumnos - PRUEBA");
+        f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        f.setContentPane(new VistaAlumnos()); // JPanel
+        f.pack();                  // AJUSTAR TAMAÑO DE GroupLayout      
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    });
 }
 }
