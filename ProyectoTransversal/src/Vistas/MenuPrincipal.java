@@ -17,6 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         cargarAlumnos();
+        
     }
 
     /**
@@ -57,7 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Salir");
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -140,7 +141,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemFormulariodeInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariodeInscripcionActionPerformed
-        // TODO add your handling code here:
+    Escritorio.removeAll(); 
+    Escritorio.repaint(); 
+   
+    VistaInscripciones vi = new VistaInscripciones(); 
+    vi.setSize(Escritorio.getSize()); 
+    vi.setVisible(true);
+    
+    Escritorio.add(vi);      
+    Escritorio.revalidate(); 
+    Escritorio.repaint();
     }//GEN-LAST:event_jMenuItemFormulariodeInscripcionActionPerformed
 
     private void jMenuItemFormulariosMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosMateriasActionPerformed
