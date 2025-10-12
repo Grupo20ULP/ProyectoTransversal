@@ -41,7 +41,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItemFormulariodeInscripcion = new javax.swing.JMenuItem();
         JMenuNotas = new javax.swing.JMenu();
         jMenuNotas = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        jMenu7Consultas = new javax.swing.JMenu();
+        jMenuItemListarInscripcion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,8 +122,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(JMenuNotas);
 
-        jMenu7.setText("Consultas");
-        jMenuBar1.add(jMenu7);
+        jMenu7Consultas.setText("Consultas");
+        jMenu7Consultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu7ConsultasActionPerformed(evt);
+            }
+        });
+
+        jMenuItemListarInscripcion.setText("Lista Inscripcion");
+        jMenuItemListarInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarInscripcionActionPerformed(evt);
+            }
+        });
+        jMenu7Consultas.add(jMenuItemListarInscripcion);
+
+        jMenuBar1.add(jMenu7Consultas);
 
         setJMenuBar(jMenuBar1);
 
@@ -160,7 +175,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        VistaAlumnos al= new VistaAlumnos();
+        VistaAlumnos al = new VistaAlumnos();
         al.setVisible(true);
         Escritorio.add(al);
         Escritorio.moveToFront(al);
@@ -184,6 +199,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(vi);
         Escritorio.moveToFront(vi);
     }//GEN-LAST:event_jMenuNotasActionPerformed
+
+    private void jMenu7ConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu7ConsultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu7ConsultasActionPerformed
+
+    private void jMenuItemListarInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarInscripcionActionPerformed
+        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaAlumnoMaterias am = new VistaAlumnoMaterias();
+        am.setVisible(true);
+        Escritorio.add(am);
+        Escritorio.moveToFront(am);
+        // con esto van a centrar la ventana que crearon
+        int x = (Escritorio.getWidth() - am.getWidth()) / 2;
+        int y = (Escritorio.getHeight() - am.getHeight()) / 2;
+        am.setLocation(x, y);
+    }//GEN-LAST:event_jMenuItemListarInscripcionActionPerformed
     public void cargarAlumnos () {
     }
 
@@ -238,12 +271,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu7Consultas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemFormulariodeInscripcion;
     private javax.swing.JMenuItem jMenuItemFormulariosAlumno;
     private javax.swing.JMenuItem jMenuItemFormulariosMaterias;
+    private javax.swing.JMenuItem jMenuItemListarInscripcion;
     private javax.swing.JMenuItem jMenuNotas;
     // End of variables declaration//GEN-END:variables
 }

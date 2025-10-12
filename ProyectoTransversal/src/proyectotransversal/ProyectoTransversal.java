@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author abate, Gomez Heber,CarrerasJuan, Zerdá Nehuen , Galan Federico,
+ * @author abate, Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico,
  * Carreño Lucas
  */
 public class ProyectoTransversal {
