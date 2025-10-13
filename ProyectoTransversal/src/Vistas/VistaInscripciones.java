@@ -4,17 +4,30 @@
  */
 package Vistas;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author Juan
  */
-public class VistaInscripciones extends javax.swing.JPanel{
+public class VistaInscripciones extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaInscripciones
      */
     public VistaInscripciones() {
         initComponents();
+        // Grupo para los RaBtns
+        ButtonGroup grupoFiltros = new ButtonGroup();
+        grupoFiltros.add(jRaBtnInscriptas);
+        grupoFiltros.add(jRaBtnNoInscripto);
+        // Config de la tabla
+        tblMaterias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tblMaterias.getTableHeader().setReorderingAllowed(false);
+        // Botones inicialmente deshabilitados
+        BtnInscribirse.setEnabled(false);
+        btnAnularInscripcion.setEnabled(false);
 
     }
 
@@ -28,8 +41,19 @@ public class VistaInscripciones extends javax.swing.JPanel{
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
+        jLTituloFormInscripcion = new javax.swing.JLabel();
+        jLNameAlu = new javax.swing.JLabel();
+        jCBAlumnos = new javax.swing.JComboBox<>();
+        jLListMateria = new javax.swing.JLabel();
+        jRaBtnInscriptas = new javax.swing.JRadioButton();
+        jRaBtnNoInscripto = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMaterias = new javax.swing.JTable();
+        BtnInscribirse = new javax.swing.JButton();
+        btnAnularInscripcion = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
         jInternalFrame1.setVisible(true);
 
@@ -44,41 +68,180 @@ public class VistaInscripciones extends javax.swing.JPanel{
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
+        jInternalFrame2.setVisible(true);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(192, 192, 192))
+        jLTituloFormInscripcion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLTituloFormInscripcion.setText("FORMULARIO DE INSCRIPCION");
+
+        jLNameAlu.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLNameAlu.setText("ALUMNO");
+
+        jCBAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLListMateria.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLListMateria.setText("LISTADO DE MATERIAS");
+
+        jRaBtnInscriptas.setText("Inscriptas");
+        jRaBtnInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRaBtnInscriptasActionPerformed(evt);
+            }
+        });
+
+        jRaBtnNoInscripto.setText("No Inscriptas");
+
+        tblMaterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Nombre"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblMaterias);
+
+        BtnInscribirse.setText("Inscribirse");
+        BtnInscribirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInscribirseActionPerformed(evt);
+            }
+        });
+
+        btnAnularInscripcion.setText("Anular Inscripcion");
+
+        BtnSalir.setText("Salir");
+
+        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
+        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
+        jInternalFrame2Layout.setHorizontalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(BtnInscribirse)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnAnularInscripcion)
+                        .addGap(53, 53, 53)
+                        .addComponent(BtnSalir)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                                .addComponent(jRaBtnInscriptas)
+                                .addGap(72, 72, 72)
+                                .addComponent(jRaBtnNoInscripto))
+                            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLNameAlu)
+                                .addGap(49, 49, 49)
+                                .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLTituloFormInscripcion)
+                        .addGap(48, 48, 48)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLListMateria)
+                .addGap(106, 106, 106))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jButton1)
-                .addContainerGap(272, Short.MAX_VALUE))
+        jInternalFrame2Layout.setVerticalGroup(
+            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                .addComponent(jLTituloFormInscripcion)
+                .addGap(27, 27, 27)
+                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLNameAlu)
+                    .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jLListMateria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRaBtnInscriptas)
+                    .addComponent(jRaBtnNoInscripto))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnInscribirse)
+                    .addComponent(btnAnularInscripcion)
+                    .addComponent(BtnSalir))
+                .addGap(42, 42, 42))
+        );
+
+        jDesktopPane2.setLayer(jInternalFrame2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane2)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRaBtnInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRaBtnInscriptasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRaBtnInscriptasActionPerformed
+
+    private void BtnInscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInscribirseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnInscribirseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnInscribirse;
+    private javax.swing.JButton BtnSalir;
+    private javax.swing.JButton btnAnularInscripcion;
+    private javax.swing.JComboBox<String> jCBAlumnos;
+    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JLabel jLListMateria;
+    private javax.swing.JLabel jLNameAlu;
+    private javax.swing.JLabel jLTituloFormInscripcion;
+    private javax.swing.JRadioButton jRaBtnInscriptas;
+    private javax.swing.JRadioButton jRaBtnNoInscripto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblMaterias;
     // End of variables declaration//GEN-END:variables
 }
