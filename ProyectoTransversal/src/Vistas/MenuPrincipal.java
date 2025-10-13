@@ -170,6 +170,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemFormulariosMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosMateriasActionPerformed
         // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint(); 
+        VistaMaterias Mat = new VistaMaterias();
+        Mat.setVisible(true);
+        Escritorio.add(Mat);
+        Escritorio.moveToFront(Mat);
+        int x = (Escritorio.getWidth() - Mat.getWidth()) / 2;
+        int y = (Escritorio.getHeight() - Mat.getHeight()) / 2;
+        Mat.setLocation(x, y);
     }//GEN-LAST:event_jMenuItemFormulariosMateriasActionPerformed
 
     private void jMenuItemFormulariosAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosAlumnoActionPerformed
