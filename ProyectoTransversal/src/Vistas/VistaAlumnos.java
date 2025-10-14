@@ -12,22 +12,29 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nehuen Zerdá
+ * @author Nehuen
  */
-public class VistaAlumnos extends javax.swing.JPanel {
+public class VistaAlumnos extends javax.swing.JInternalFrame {
     
-    // LOGICA Y UTILIDADES
-private final AlumnoData alumnoData = new AlumnoData();
-private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCTOR
-
-    /** 
-     * Creates new form VistaAlumnos
-     */
+     // --- LOGICA Y UTILIDADES 
+    private final AlumnoData alumnoData = new AlumnoData();
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DefaultTableModel modeloTabla; // se toma del JTable en el constructor
+    
+        /**
+         * Creates new form VistaAlumnos
+         */
     public VistaAlumnos() {
         initComponents();
         
-        // Configuración inicial
+        // Propiedades del JInternalFrame
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Alumnos");
+        
+ 
     try {
         modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
     } catch (ClassCastException ex) {
@@ -50,6 +57,7 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -140,27 +148,27 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
         ));
         jScrollPane1.setViewportView(tbAlumnos);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(62, 62, 62)
                                     .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,7 +176,7 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
                                     .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(74, 74, 74)
                                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,45 +186,45 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
                                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
                                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
@@ -224,7 +232,28 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        txtFecha.getAccessibleContext().setAccessibleName("");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 618, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 608, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -235,76 +264,76 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         // Lee el formulario SIN ID (alta)
-    Alumno a = leerFormulario(false);
-    if (a != null) {
-        // Inserta en la BD
-        alumnoData.guardarAlumno(a);
-        // Refresca la tabla para ver el nuevo registro
-        cargarTabla();
-        // Limpia el formulario para el proximo alta
-        limpiarCampos();
-    }
+        Alumno a = leerFormulario(false);
+        if (a != null) {
+            // Inserta en la BD
+            alumnoData.guardarAlumno(a);
+            // Refresca la tabla para ver el nuevo registro
+            cargarTabla();
+            // Limpia el formulario para el proximo alta
+            limpiarCampos();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         // Pide el ID por un cuadro de diálogo
-    String idStr = javax.swing.JOptionPane.showInputDialog(this, "Ingresá ID de alumno:");
-    if (idStr == null || idStr.trim().isEmpty()) return; // Canceló o vacío
+        String idStr = javax.swing.JOptionPane.showInputDialog(this, "Ingresá ID de alumno:");
+        if (idStr == null || idStr.trim().isEmpty()) return; // Canceló o vacío
 
-    try {
-        int id = Integer.parseInt(idStr.trim());
-        // Busca en la BD
-        Alumno a = alumnoData.buscarAlumnoPorId(id);
-        if (a != null) {
-            // Carga los datos encontrados en el formulario
-            txId.setText(String.valueOf(a.getIdAlumno()));
-            txtDni.setText(String.valueOf(a.getDni()));
-            txtApellido.setText(a.getApellido());
-            txtNombre.setText(a.getNombre());
-            txtFecha.setText(a.getFechaNacimiento().toString()); // yyyy-MM-dd
-            checkbox1.setState(a.isEstado());
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el alumno.");
+        try {
+            int id = Integer.parseInt(idStr.trim());
+            // Busca en la BD
+            Alumno a = alumnoData.buscarAlumnoPorId(id);
+            if (a != null) {
+                // Carga los datos encontrados en el formulario
+                txId.setText(String.valueOf(a.getIdAlumno()));
+                txtDni.setText(String.valueOf(a.getDni()));
+                txtApellido.setText(a.getApellido());
+                txtNombre.setText(a.getNombre());
+                txtFecha.setText(a.getFechaNacimiento().toString()); // yyyy-MM-dd
+                checkbox1.setState(a.isEstado());
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el alumno.");
+            }
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
         }
-    } catch (NumberFormatException ex) {
-        javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
-    }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         // Lee el formulario CON ID (porque vamos a modificar)
-    Alumno a = leerFormulario(true);
-    if (a != null) {
-        // En AlumnoData, el metodo de update se llama "altaLogica(Alumno)"
-        alumnoData.altaLogica(a);
-        // Refresca la tabla para ver los cambios
-        cargarTabla();
-    }
+        Alumno a = leerFormulario(true);
+        if (a != null) {
+            // En AlumnoData, el metodo de update se llama "altaLogica(Alumno)"
+            alumnoData.altaLogica(a);
+            // Refresca la tabla para ver los cambios
+            cargarTabla();
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         // TODO add your handling code here:
         // Necesitamos el ID para marcar estado=false
-    String idTxt = txId.getText().trim();
-    if (idTxt.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Primero busca/carga un alumno (ID).");
-        return;
-    }
-    int id = Integer.parseInt(idTxt);
+        String idTxt = txId.getText().trim();
+        if (idTxt.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Primero busca/carga un alumno (ID).");
+            return;
+        }
+        int id = Integer.parseInt(idTxt);
 
-    // Marca baja logica en la BD
-    alumnoData.bajaLogica(id);
-    // Refresca tabla y limpia formulario
-    cargarTabla();
-    limpiarCampos();
+        // Marca baja logica en la BD
+        alumnoData.bajaLogica(id);
+        // Refresca tabla y limpia formulario
+        cargarTabla();
+        limpiarCampos();
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
         // Vuelve a cargar todos los alumnos en la tabla
-    cargarTabla();
+        cargarTabla();
     }//GEN-LAST:event_btnListarActionPerformed
 
 
@@ -321,6 +350,7 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbAlumnos;
     private java.awt.TextField txId;
@@ -331,63 +361,59 @@ private DefaultTableModel modeloTabla;  // LO TOMAMOS DEL JTABLE EN EL CONSTRUCT
     // End of variables declaration//GEN-END:variables
 
     private void cargarTabla() {
-        //SI EL METODO NO ESTA, LO TOMAMOS DEL JTABLE
-    if (modeloTabla == null) {
+        if (modeloTabla == null) {
         modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
     }
-    
-    // LIMPIAR
     modeloTabla.setRowCount(0);
 
-    // PEDIR LISTA AL DATA
-    List<Alumno> lista = alumnoData.actualizarAlumno();
+    // Cambiá este nombre si tu DAO usa otro para listar
+    java.util.List<Alumno> lista = alumnoData.actualizarAlumno();
 
-    // CARGAR FILAS 
     for (Alumno a : lista) {
         modeloTabla.addRow(new Object[]{
             a.getIdAlumno(),
             a.getDni(),
             a.getApellido(),
             a.getNombre(),
-            a.getFechaNacimiento(),  // LocalDate -> toString yyyy-MM-dd
+            a.getFechaNacimiento(), // LocalDate -> toString
             a.isEstado()
         });
     }
-}
-    // -------------------------- HELPERS DE LA VISTA --------------------------------------------
+    }
 
-private void limpiarCampos() {
+    private void limpiarCampos() {
     txId.setText("");
     txtDni.setText("");
     txtApellido.setText("");
     txtNombre.setText("");
-    txtFecha.setText("");           // ESCRIBIR LA FECHA COMO yyyy-MM-dd
+    txtFecha.setText("");           // escribir la fecha como yyyy-MM-dd
     checkbox1.setState(true);
     txtDni.requestFocus();
-}
-
+    }    
+    
 // Este mEtodo lee lo que el usuario escribio en los campos del formulario
 // y crea un objeto Alumno con esa informacion.
-// Si conId = true, tambien toma el ID (sirve para modificar o borrar)
-
-
-private Alumno leerFormulario(boolean conId) {
-    // Tomamos el texto de cada campo y lo guardamos en variables
+// Si conId = true, tambien toma el ID (sirve para modificar o borrar)
+    private Alumno leerFormulario(boolean conId) {
+        // Tomamos el texto de cada campo del formulario
     String dniStr = txtDni.getText().trim();
     String ape    = txtApellido.getText().trim();
     String nom    = txtNombre.getText().trim();
     String f      = txtFecha.getText().trim();
-    boolean activo= checkbox1.getState();
+    boolean activo = checkbox1.getState();
 
-    // Si queda el placeholder "(AAAA-MM-DD)", considerarlo como vacío
-    if (f.equalsIgnoreCase("(AAAA-MM-DD)")) { f = ""; }
+    // Si el campo fecha aún tiene el texto de ayuda, lo tratamos como vacío
+    if (f.equalsIgnoreCase("(AAAA-MM-DD)")) {
+        f = "";
+    }
 
+    // Verificamos campos vacíos
     if (dniStr.isEmpty() || ape.isEmpty() || nom.isEmpty() || f.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Completá todos los campos.");
         return null;
     }
-    
-    // Convierte el texto del DNI a numero
+
+    // Convertimos DNI a número
     int dni;
     try {
         dni = Integer.parseInt(dniStr);
@@ -395,20 +421,20 @@ private Alumno leerFormulario(boolean conId) {
         javax.swing.JOptionPane.showMessageDialog(this, "DNI inválido.");
         return null;
     }
-    
-    // Convierte el texto de la fecha a formato LocalDate (yyyy-MM-dd)
+
+    // Convertimos fecha a LocalDate (yyyy-MM-dd)
     java.time.LocalDate fecha;
     try {
-        fecha = java.time.LocalDate.parse(f, fmt);  // fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        fecha = java.time.LocalDate.parse(f, fmt);
     } catch (java.time.format.DateTimeParseException ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Fecha inválida (usar yyyy-MM-dd).");
         return null;
     }
-    
-    // Crea un nuevo objeto Alumno con los datos del formulario
+
+    // Creamos objeto Alumno
     Alumno a = new Alumno();
 
-    // Si conId es verdadero, tambien asigna el ID (usado en actualizar/baja)
+    // Si es actualización o baja, tomamos también el ID
     if (conId) {
         String idTxt = txId.getText().trim();
         if (idTxt.isEmpty()) {
@@ -416,28 +442,15 @@ private Alumno leerFormulario(boolean conId) {
             return null;
         }
         a.setIdAlumno(Integer.parseInt(idTxt));
-    }
+}
     
-    // Asigna todos los datos al objeto alumno
+// Asignamos los demás valores
     a.setDni(dni);
     a.setApellido(ape);
     a.setNombre(nom);
     a.setFechaNacimiento(fecha);
     a.setEstado(activo);
-    
-    // Devuelve el alumno armado
+
     return a;
-}
-
-
-public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(() -> {
-        javax.swing.JFrame f = new javax.swing.JFrame("Vista Alumnos - PRUEBA");
-        f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        f.setContentPane(new VistaAlumnos()); // JPanel
-        f.pack();                  // AJUSTAR TAMAÑO DE GroupLayout      
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-    });
-}
+    }
 }
