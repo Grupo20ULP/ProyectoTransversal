@@ -4,10 +4,8 @@
  */
 package Vistas;
 
-
 import Modelo.Materia;
 import Persistencia.MateriaData;
-import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,50 +18,58 @@ import javax.swing.event.ListSelectionListener;
  */
 public class VistaMaterias extends javax.swing.JInternalFrame {
 
-    
     private MateriaData materiaData;
     private DefaultTableModel modeloTabla;
     private int idMateriaSeleccionada = -1;
+
     /**
      * Creates new form VistaMaterias
      */
-    public VistaMaterias() {
+    public VistaMaterias () {
         initComponents();
-
-        materiaData = new MateriaData(); 
+        materiaData = new MateriaData();
         configurarTabla();
         materiasEnTabla();
         configurarTablaDeSeleccion();
         agregarListenerTabla();
     }
-    
-    private void configurarTabla() {
+
+    private void configurarTabla () {
         modeloTabla = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column) {
+            public boolean isCellEditable (int row, int column) {
                 return false;
             }
         };
-          modeloTabla.addColumn("ID");
-          modeloTabla.addColumn("Nombre");
-          modeloTabla.addColumn("Año");
-          modeloTabla.addColumn("Estado");
-          tablaMaterias.setModel(modeloTabla);
-          tablaMaterias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tablaMaterias.getColumnModel().getColumnCount() > 0) {
-            tablaMaterias.getColumnModel().getColumn(0).setMaxWidth(0);
-            tablaMaterias.getColumnModel().getColumn(0).setMinWidth(0);
-            tablaMaterias.getColumnModel().getColumn(0).setPreferredWidth(0);
-            tablaMaterias.getColumnModel().getColumn(0).setResizable(false);
+        modeloTabla.addColumn("ID");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Año");
+        modeloTabla.addColumn("Estado");
+        tablaMaterias.setModel(modeloTabla);
+        tablaMaterias.setSelectionMode(
+            javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tablaMaterias.getColumnModel().
+            getColumnCount() > 0) {
+            tablaMaterias.getColumnModel().
+                getColumn(0).
+                setMaxWidth(0);
+            tablaMaterias.getColumnModel().
+                getColumn(0).
+                setMinWidth(0);
+            tablaMaterias.getColumnModel().
+                getColumn(0).
+                setPreferredWidth(0);
+            tablaMaterias.getColumnModel().
+                getColumn(0).
+                setResizable(false);
         }
     }
-    
     private DefaultTableModel modeloTablaSeleccion;
-    
-    private void configurarTablaDeSeleccion() {
+
+    private void configurarTablaDeSeleccion () {
         modeloTablaSeleccion = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column) {
+            public boolean isCellEditable (int row, int column) {
                 return false;
             }
         };
@@ -73,64 +79,73 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
         tablaSeleccion.setModel(modeloTablaSeleccion);
     }
 
-    private void llenarTablaSeleccion(int filaSeleccionada) {
+    private void llenarTablaSeleccion (int filaSeleccionada) {
         modeloTablaSeleccion.setRowCount(0);
         String nombre = (String) modeloTabla.getValueAt(filaSeleccionada, 1);
-        Object anio = modeloTabla.getValueAt(filaSeleccionada, 2); 
+        Object anio = modeloTabla.getValueAt(filaSeleccionada, 2);
         String estado = (String) modeloTabla.getValueAt(filaSeleccionada, 3);
         modeloTablaSeleccion.addRow(new Object[]{
             nombre,
             anio,
             estado
         });
-        tablaSeleccion.setModel(modeloTablaSeleccion); 
+        tablaSeleccion.setModel(modeloTablaSeleccion);
     }
 
-    private void materiasEnTabla() {
+    private void materiasEnTabla () {
         modeloTabla.setRowCount(0);
-        List<Materia> listaMaterias = materiaData.actualizarmateria(); 
-            for (Materia m : listaMaterias) {
-                modeloTabla.addRow(new Object[]{
+        List<Materia> listaMaterias = materiaData.actualizarmateria();
+        for (Materia m : listaMaterias) {
+            modeloTabla.addRow(new Object[]{
                 m.getIdMateria(),
                 m.getNombre(),
-                m.getFechaMateria().getYear(), 
-                m.isEstado() ? "Activo" : "Inactivo"
+                m.getAnio(),
+                m.isEstado()
+                ? "Activo"
+                : "Inactivo"
             });
         }
     }
-    private void limpiarCampos() {
+
+    private void limpiarCampos () {
         txtNombre.setText("");
         txtAnio.setText("");
-        cboxEstado.setSelectedIndex(0); 
+        cboxEstado.setSelectedIndex(0);
         idMateriaSeleccionada = -1;
         tablaMaterias.clearSelection();
     }
 
-    private void agregarListenerTabla() {
-        tablaMaterias.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            if (!e.getValueIsAdjusting() && tablaMaterias.getSelectedRow() != -1) {
-                int fila = tablaMaterias.getSelectedRow();
-                idMateriaSeleccionada = (int) modeloTabla.getValueAt(fila, 0);
-                llenarTablaSeleccion(fila); 
-            }
-        }
-        });
+    private void agregarListenerTabla () {
+        tablaMaterias.getSelectionModel().
+            addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged (ListSelectionEvent e) {
+                    if ( ! e.getValueIsAdjusting() && tablaMaterias.
+                        getSelectedRow() != -1) {
+                        int fila = tablaMaterias.getSelectedRow();
+                        idMateriaSeleccionada = (int) modeloTabla.getValueAt(
+                            fila, 0);
+                        llenarTablaSeleccion(fila);
+                    }
+                }
+            });
     }
-    
-    private void cargarMateriasInactivas() {
-        modeloTabla.setRowCount(0); 
+
+    private void cargarMateriasInactivas () {
+        modeloTabla.setRowCount(0);
         List<Materia> lista = materiaData.materiasInactivas();
         for (Materia m : lista) {
             modeloTabla.addRow(new Object[]{
-            m.getIdMateria(),
-            m.getNombre(),
-            m.getFechaMateria().getYear(),
-            m.isEstado() ? "Activo" : "Inactivo"
-        });
+                m.getIdMateria(),
+                m.getNombre(),
+                m.getAnio(),
+                m.isEstado()
+                ? "Activo"
+                : "Inactivo"
+            });
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -375,78 +390,98 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-    cargarMateriasInactivas(); 
-    JOptionPane.showMessageDialog(this, 
-        "Lista actualizada con todas las materias y ordenada alfabeticamente.","", JOptionPane.INFORMATION_MESSAGE);
+        cargarMateriasInactivas();
+        JOptionPane.showMessageDialog(this,
+            "Lista actualizada con todas las materias y ordenada alfabeticamente.",
+            "", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
         if (idMateriaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una materia de la tabla para eliminarla.");
+            JOptionPane.showMessageDialog(this,
+                "Debe seleccionar una materia de la tabla para eliminarla.");
             return;
         }
-        int confirmacion = JOptionPane.showConfirmDialog(this, 
-            "¿Esta seguro de eliminar la materia ID: " + idMateriaSeleccionada + "?","Confiramacion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+            "¿Esta seguro de eliminar la materia ID: " + idMateriaSeleccionada
+            + "?", "Confiramacion", JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE);
         if (confirmacion == JOptionPane.YES_OPTION) {
-        try {
-            materiaData.borrarMateria(idMateriaSeleccionada);
-            limpiarCampos();
-            materiasEnTabla();
-        } catch (Exception ex) {
-             JOptionPane.showMessageDialog(this, "Error al borrar la materia: " + ex.getMessage());
-        }
+            try {
+                materiaData.borrarMateria(idMateriaSeleccionada);
+                limpiarCampos();
+                materiasEnTabla();
+            }
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,
+                    "Error al borrar la materia: " + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
-    String nombre = txtNombre.getText().trim();
-    String anioo = txtAnio.getText().trim();
-    String estadoo = cboxEstado.getSelectedItem().toString();
-        if (nombre.isEmpty() || anioo.isEmpty()|| estadoo.equalsIgnoreCase("Seleccione opcion")) {
-            JOptionPane.showMessageDialog(this, "Debe completar nombre, año y estado.");
+        String nombre = txtNombre.getText().
+            trim();
+        String anioo = txtAnio.getText().
+            trim();
+        String estadoo = cboxEstado.getSelectedItem().
+            toString();
+        if (nombre.isEmpty() || anioo.isEmpty() || estadoo.equalsIgnoreCase(
+            "Seleccione opcion")) {
+            JOptionPane.showMessageDialog(this,
+                "Debe completar nombre, año y estado.");
             return;
         }
-            try {
-        int anio = Integer.parseInt(anioo);
-        if (materiaData.materiaDuplicada(nombre, anio)) {
-            JOptionPane.showMessageDialog(this,"Error ya existe la materia '' " + nombre + " '' para el año " + anio + " y no se puede insertar.", "Materia duplicada", JOptionPane.WARNING_MESSAGE);
-            return;
+        try {
+            int anio = Integer.parseInt(anioo);
+            if (materiaData.materiaDuplicada(nombre, anio)) {
+                JOptionPane.showMessageDialog(this,
+                    "Error ya existe la materia '' " + nombre
+                    + " '' para el año " + anio + " y no se puede insertar.",
+                    "Materia duplicada", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            boolean estado = estadoo.equalsIgnoreCase("Activo");
+            Materia nuevaMateria = new Materia(nombre, anio, estado);
+            materiaData.insertarMateria(nuevaMateria);
+            limpiarCampos();
+            materiasEnTabla();
         }
-                LocalDate fechaMateria = LocalDate.of(anio, 1, 1);
-                boolean estado = estadoo.equalsIgnoreCase("Activo");
-                Materia nuevaMateria = new Materia(nombre, fechaMateria, estado);
-                materiaData.insertarMateria(nuevaMateria);
-                limpiarCampos();
-                materiasEnTabla();
-        } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Error ingrese un año valido.");
-        } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error al insertar materia, ya existe.");
+        catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Error ingrese un año valido.");
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                "Error al insertar materia, ya existe.");
         }
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         // TODO add your handling code here:
         if (idMateriaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una materia de la tabla para dar de baja.");
+            JOptionPane.showMessageDialog(this,
+                "Debe seleccionar una materia de la tabla para dar de baja.");
             return;
         }
         try {
             materiaData.bajaLogica(idMateriaSeleccionada);
             limpiarCampos();
             materiasEnTabla();
-        } catch (Exception ex) {
-             JOptionPane.showMessageDialog(this, "Error al dar la baja logica: " + ex.getMessage());
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al dar la baja logica: "
+                + ex.getMessage());
         }
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         // TODO add your handling code here:
         if (idMateriaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, 
-            "Error debe seleccionar una materia de la tabla.", "materia no esta seleccionada", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                "Error debe seleccionar una materia de la tabla.",
+                "materia no esta seleccionada", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -455,11 +490,13 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
             materiaData.altaLogica(materiaParaAlta);
             limpiarCampos();
             materiasEnTabla();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al dar de alta la materia: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                "Error al dar de alta la materia: " + ex.getMessage(), "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAltaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

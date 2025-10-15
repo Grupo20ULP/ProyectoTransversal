@@ -32,7 +32,7 @@ public class MateriaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getFechaMateria().getYear());
+            ps.setInt(2, materia.getAnio());
             ps.setBoolean(3, materia.isEstado());
             int filasAfectadas = ps.executeUpdate();
             if (filasAfectadas > 0) {
@@ -80,7 +80,7 @@ public class MateriaData {
                 Materia materia = new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
-                materia.setFechaMateria(java.time.LocalDate.of(rs.getInt("anio"), 1, 1));
+                materia.setAnio(rs.getInt("anio"));
                 materia.setEstado(rs.getBoolean("estado"));
                 materias.add(materia);
             }
@@ -106,7 +106,7 @@ public class MateriaData {
             Materia materia = new Materia();
             materia.setIdMateria(rs.getInt("idMateria"));
             materia.setNombre(rs.getString("nombre"));
-            materia.setFechaMateria(java.time.LocalDate.of(rs.getInt("anio"), 1, 1)); 
+            materia.setAnio(rs.getInt("anio"));
             materia.setEstado(rs.getBoolean("estado")); 
             materias.add(materia);
         }

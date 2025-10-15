@@ -14,22 +14,22 @@ public class Materia {
 
     private int idMateria;
     private String nombre;
-    private LocalDate fechaMateria;
+    private int anio;
     private boolean estado;
 
     public Materia () {
     }
 
-    public Materia (String nombre, LocalDate fechaMateria, boolean estado) {
+    public Materia (String nombre, int anio, boolean estado) {
         this.nombre = nombre;
-        this.fechaMateria = fechaMateria;
+        this.anio = anio;
         this.estado = estado;
     }
 
-    public Materia (int idMateria, String nombre, LocalDate fechaMateria, boolean estado) {
+    public Materia (int idMateria, String nombre, int anio, boolean estado) {
         this.idMateria = idMateria;
         this.nombre = nombre;
-        this.fechaMateria = fechaMateria;
+        this.anio = anio;
         this.estado = estado;
     }
 
@@ -49,12 +49,12 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaMateria () {
-        return fechaMateria;
+    public int getAnio () {
+        return anio;
     }
 
-    public void setFechaMateria (LocalDate fechaMateria) {
-        this.fechaMateria = fechaMateria;
+    public void setAnio (int anio) {
+        this.anio = anio;
     }
 
     public boolean isEstado () {
@@ -68,9 +68,6 @@ public class Materia {
     @Override
     public String toString () {
         return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre +
-            ", fechaMateria=" + fechaMateria + ", estado=" + estado + '}';
+            ", anio=" + anio + ", estado=" + estado + '}';
     }
-    
-
-
 }

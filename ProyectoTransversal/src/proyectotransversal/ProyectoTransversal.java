@@ -1,11 +1,12 @@
-
 package proyectotransversal;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Vistas.VistaAlumnos;
 import Modelo.Alumno;
+import Modelo.Materia;
 import Persistencia.AlumnoData;
+import Persistencia.MateriaData;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,18 +22,12 @@ public class ProyectoTransversal {
      */
     public static void main (String[] args) {
         AlumnoData ad = new AlumnoData();
-        
-        
         Alumno alm = new Alumno(645645645, "gomez", "heber", LocalDate.of(2020,
             10, 15), true);
         ad.guardarAlumno(alm);
-        ad.bajaLogica(1);
-        Alumno alumno1 = new Alumno(879879797, "Perez", "Juan", LocalDate.
-            of(1999, 5, 15), true);
-        ad.guardarAlumno(alumno1); 
-        List<Alumno> alumnos = ad.actualizarAlumno();
-        for (Alumno a : alumnos) {
-            System.out.println(a.getApellido() + ", " + a.getNombre());
-        }
+        MateriaData md = new MateriaData();
+        Materia mate = new Materia("Matematica", 2025,
+            true);
+        md.insertarMateria(mate);
     }
 }
