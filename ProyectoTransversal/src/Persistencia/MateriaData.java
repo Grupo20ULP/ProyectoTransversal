@@ -117,6 +117,28 @@ public class MateriaData {
         return materias;
     }
 
+    /////////////////BUSCAR POR ID//////////////////////////
+    public Materia buscarMateriaPorId(int idMateria) {
+        Materia materia = null;
+        String sql = "SELECT * FROM materia WHERE idMateria = ? AND estado = true";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnio(rs.getInt("anio"));
+                materia.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró materia con ID: " + idMateria);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar materia: " + e.getMessage());
+        }
+        return materia;
+    }
+
     /////////////////ALTA LOGICA//////////////////////////
     public void altaLogica (Materia materia) {
         String sql 
@@ -161,7 +183,7 @@ public class MateriaData {
                 + e.getMessage());
         }
     }
-
+        
     //////////////////////BORRAR////////////////////////////
     public void borrarMateria (int idMateria) {
         String sql = "DELETE FROM materia WHERE idMateria = ?";
