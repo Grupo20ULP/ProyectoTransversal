@@ -4,6 +4,13 @@
  */
 package Vistas;
 
+import Modelo.Alumno;
+import Modelo.Materia;
+import Persistencia.CursadaData;
+import Persistencia.MateriaData;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Heber Gomez
@@ -15,7 +22,14 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
      */
     public VistaAlumnoMaterias () {
         initComponents();
+        cargarComboMaterias();
+        armarCabeceraTabla();
+        cargarTablaAlumnos();
     }
+//  creamos variables que son objetos de las clases para poder usarlas dentro de la ventana VistaAlumnoMateria.    
+    private MateriaData materiaData = new MateriaData();
+    private CursadaData cursadaData = new CursadaData();
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,9 +42,9 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxFiltrarMateria = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAlumno = new javax.swing.JTable();
 
         setClosable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -43,9 +57,18 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("MATERIA");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFiltrarMateria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxFiltrarMateriaItemStateChanged(evt);
+            }
+        });
+        jComboBoxFiltrarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFiltrarMateriaActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAlumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,10 +76,10 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Dni", "Apellido", "Nombre"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableAlumno);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,7 +91,7 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxFiltrarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -83,7 +106,7 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxFiltrarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 13, Short.MAX_VALUE))
@@ -92,12 +115,61 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBoxFiltrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarMateriaActionPerformed
+        cargarTablaAlumnos();
+    }//GEN-LAST:event_jComboBoxFiltrarMateriaActionPerformed
+
+    private void jComboBoxFiltrarMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarMateriaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxFiltrarMateriaItemStateChanged
+// creamos metodo y listamos las materias que guardamos  
+// y las agregamos al JComboBox para que el usuario pueda seleccionarlas    
+    private void cargarComboMaterias () {
+        List<Materia> materias = materiaData.actualizarmateria();
+        for (Materia m : materias) {
+            jComboBoxFiltrarMateria.addItem(m);
+        }
+    }
+// creamos metodo para armar el jtable 
+// definiendo las columnas que vamos a mostrar    
+    private void armarCabeceraTabla () {
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        jTableAlumno.setModel(modelo);
+    }
+// creamos método para cargar los alumnos inscriptos en la materia seleccionada 
+// y los mostramos en la jtable
+    private void cargarTablaAlumnos () {
+//      limpiamos la tabla antes de cargar los datos        
+        modelo.setRowCount(0);
+        Materia materiaSeleccionada = (Materia) jComboBoxFiltrarMateria.
+            getSelectedItem();
+//      if donde decimos que si no hay una materia seleccionada no hacemos nada        
+        if (materiaSeleccionada == null) {
+            return;
+        }
+//      buscar los alumnos (List<Alumno>) de la materia seleccionada usar metodo (cursadaData.obtenerAlumnosPorMateria)       
+        List<Alumno> alumnos = cursadaData.obtenerAlumnosPorMateria(
+            materiaSeleccionada.getIdMateria());
+//      recorremos la lista de alumnos        
+        for (Alumno a : alumnos) {
+//          por cada alumno agregamos una fila a la tabla con su informacion            
+            modelo.addRow(new Object[]{
+                a.getIdAlumno(),
+                a.getDni(),
+                a.getApellido(),
+                a.getNombre()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Materia> jComboBoxFiltrarMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAlumno;
     // End of variables declaration//GEN-END:variables
 }

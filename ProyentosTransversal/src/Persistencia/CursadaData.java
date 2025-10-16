@@ -77,4 +77,31 @@ public class CursadaData {
         }
         return cursadas;
     }
+    public List<Modelo.Alumno> obtenerAlumnosPorMateria(int idMateria) {
+    List<Modelo.Alumno> alumnos = new ArrayList<>();
+// el modelo.alumno nos dice el tipo de elementos que contiene la lista en este caso objetos de tipo Alumno.
+// así cuando iteramos la lista sabemos que cada elemento es un Alumno y podemos hacer cosas como: un for each     
+  
+    String sql = "SELECT a.* FROM inscripcion i "
+               + "JOIN alumno a ON i.idAlumno = a.idAlumno "
+               + "WHERE i.idMateria = ? AND a.estado = true";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, idMateria);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Modelo.Alumno alumno = new Modelo.Alumno();
+            alumno.setIdAlumno(rs.getInt("idAlumno"));
+            alumno.setDni(rs.getInt("dni"));
+            alumno.setApellido(rs.getString("apellido"));
+            alumno.setNombre(rs.getString("nombre"));
+            alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+            alumno.setEstado(rs.getBoolean("estado"));
+            alumnos.add(alumno);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener alumnos por materia: " + e.getMessage());
+    }
+    return alumnos;
+}
+
 }
