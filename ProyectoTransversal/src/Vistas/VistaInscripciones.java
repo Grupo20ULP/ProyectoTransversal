@@ -26,8 +26,8 @@ public class VistaInscripciones extends javax.swing.JPanel {
         tblMaterias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tblMaterias.getTableHeader().setReorderingAllowed(false);
         // Botones inicialmente deshabilitados
-        BtnInscribirse.setEnabled(false);
-        btnAnularInscripcion.setEnabled(false);
+        BtnInscribirse.setEnabled(true);
+        btnAnularInscripcion.setEnabled(true);
 
     }
 
