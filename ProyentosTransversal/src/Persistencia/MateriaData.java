@@ -206,4 +206,23 @@ public class MateriaData {
                 getMessage());
         }
     }
+
+    public List<Materia> obtenerMaterias() {
+            List<Materia> materias = new ArrayList<>();
+    String sql = "SELECT * FROM materia"; // o agregar WHERE activo=true si corresponde
+    try (PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            Materia m = new Materia();
+            m.setIdMateria(rs.getInt("idMateria"));
+            m.setNombre(rs.getString("nombre"));
+            // agregá más campos si tu modelo los tiene
+            materias.add(m);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al listar materias: " + e.getMessage());
+    }
+    return materias;
+    }
 }

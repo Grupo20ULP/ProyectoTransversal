@@ -65,4 +65,8 @@ public class Cursada {
     public String toString() {
         return alumno.getApellido() + ", " + alumno.getNombre() + " - " + materia.getNombre() + " (" + nota + ")";
     }
+
+    public void setIdInscripcion(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
