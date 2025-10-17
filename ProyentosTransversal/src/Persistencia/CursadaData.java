@@ -4,7 +4,9 @@
  */
 package Persistencia;
 
+import Modelo.Alumno;
 import Modelo.Cursada;
+import Modelo.Materia;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +21,7 @@ import java.sql.Connection;
  * @author Federico Galan
  */
 public class CursadaData {
+
     private Connection con = null;
     private AlumnoData ad = new AlumnoData();
     private MateriaData md = new MateriaData();
@@ -76,5 +79,35 @@ public class CursadaData {
             JOptionPane.showMessageDialog(null, "Error al listar cursadas: " + e.getMessage());
         }
         return cursadas;
+    }
+
+    public void inscribir(Alumno alumno, Materia materia) {
+        String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota) VALUES (?, ?, ?)";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, alumno.getIdAlumno());
+            ps.setInt(2, materia.getIdMateria());
+            ps.setDouble(3, 0); // nota inicial 0
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Alumno inscripto correctamente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al inscribir: " + ex.getMessage());
+        }
+
+    }
+
+    public void eliminarCursada(int idAlumno, int idMateria) {
+        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                System.out.println("Cursada eliminada correctamente.");
+            } else {
+                System.out.println("No se encontro la cursada para eliminar.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al eliminar cursada: " + ex.getMessage());
+        }
     }
 }

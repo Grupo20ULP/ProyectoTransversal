@@ -22,7 +22,7 @@ public class ProyectoTransversal {
      */
     public static void main (String[] args) {
         AlumnoData ad = new AlumnoData();
-        Alumno alm = new Alumno(645645645, "gomez", "heber", LocalDate.of(2020,
+        Alumno alm = new Alumno(874849565, "gomez", "heber", LocalDate.of(2020,
             10, 15), true);
         ad.guardarAlumno(alm);
         MateriaData md = new MateriaData();

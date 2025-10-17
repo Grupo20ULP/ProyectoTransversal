@@ -13,11 +13,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal () {
+    public MenuPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
         cargarAlumnos();
-        
+
     }
 
     /**
@@ -156,22 +156,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemFormulariodeInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariodeInscripcionActionPerformed
-    Escritorio.removeAll(); 
-    Escritorio.repaint(); 
-   
-    VistaInscripciones vi = new VistaInscripciones(); 
-    vi.setSize(Escritorio.getSize()); 
-    vi.setVisible(true);
-    
-    Escritorio.add(vi);      
-    Escritorio.revalidate(); 
-    Escritorio.repaint();
+        Escritorio.removeAll();
+        Escritorio.repaint();
+
+        VistaInscripciones vi = new VistaInscripciones();
+        Escritorio.add(vi);
+        vi.setSize(Escritorio.getSize());
+        vi.setVisible(true);
+            // 🔹 Centrar dentro del escritorio
+    vi.setLocation(
+        (Escritorio.getWidth() - vi.getWidth()) / 2,
+        (Escritorio.getHeight() - vi.getHeight()) / 2
+    );
+
+        Escritorio.revalidate();
+        Escritorio.repaint();
+
     }//GEN-LAST:event_jMenuItemFormulariodeInscripcionActionPerformed
 
     private void jMenuItemFormulariosMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosMateriasActionPerformed
         // TODO add your handling code here:
         Escritorio.removeAll();
-        Escritorio.repaint(); 
+        Escritorio.repaint();
         VistaMaterias Mat = new VistaMaterias();
         Mat.setVisible(true);
         Escritorio.add(Mat);
@@ -226,13 +232,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         int y = (Escritorio.getHeight() - am.getHeight()) / 2;
         am.setLocation(x, y);
     }//GEN-LAST:event_jMenuItemListarInscripcionActionPerformed
-    public void cargarAlumnos () {
+    public void cargarAlumnos() {
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main (String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -240,34 +246,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.
-                getInstalledLookAndFeels()) {
+                    getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).
-                log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex) {
+                    log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).
-                log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex) {
+                    log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).
-                log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                    log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).
-                log(java.util.logging.Level.SEVERE, null, ex);
+                    log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run () {
+            public void run() {
                 new MenuPrincipal().setVisible(true);
             }
         });

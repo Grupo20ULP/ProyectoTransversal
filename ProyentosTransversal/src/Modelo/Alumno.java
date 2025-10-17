@@ -43,9 +43,6 @@ public class Alumno {
         return idAlumno;
     }
 
-    public Alumno getIdAlumno (int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public void setIdAlumno (int idAlumno) {
         this.idAlumno = idAlumno;
