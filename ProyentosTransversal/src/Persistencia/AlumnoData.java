@@ -12,7 +12,8 @@ import java.sql.Connection;
 
 /**
  *
- * @author abate, Gomez Heber, Galan Federico, Carreño Lucas
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class AlumnoData {
 

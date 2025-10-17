@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Modelo.Alumno;
@@ -12,40 +11,41 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nehuen
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class VistaAlumnos extends javax.swing.JInternalFrame {
-    
-     // --- LOGICA Y UTILIDADES 
+
+    // --- LOGICA Y UTILIDADES 
     private final AlumnoData alumnoData = new AlumnoData();
-    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern(
+        "yyyy-MM-dd");
     private DefaultTableModel modeloTabla; // se toma del JTable en el constructor
-    
-        /**
-         * Creates new form VistaAlumnos
-         */
-    public VistaAlumnos() {
+
+    /**
+     * Creates new form VistaAlumnos
+     */
+    public VistaAlumnos () {
         initComponents();
-        
         // Propiedades del JInternalFrame
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Alumnos");
-        
- 
-    try {
-        modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
-    } catch (ClassCastException ex) {
-        // Por si NetBeans cambiara el modelo, creamos uno nuevo por las dudas
-        modeloTabla = new DefaultTableModel(
-            new Object[]{"ID","DNI","Apellido","Nombre","Fecha","Activo"}, 0);
-        tbAlumnos.setModel(modeloTabla);
-    }
-    txId.setEnabled(false);           // el ID no se escribe a mano
-    checkbox1.setState(true);         // activo por defecto
-    cargarTabla();                    // opcional: listar al abrir
+        try {
+            modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
+        }
+        catch (ClassCastException ex) {
+            // Por si NetBeans cambiara el modelo, creamos uno nuevo por las dudas
+            modeloTabla = new DefaultTableModel(
+                new Object[]{"ID", "DNI", "Apellido", "Nombre", "Fecha", "Activo"},
+                0);
+            tbAlumnos.setModel(modeloTabla);
+        }
+        txId.setEnabled(false);           // el ID no se escribe a mano
+        checkbox1.setState(true);         // activo por defecto
+        cargarTabla();                    // opcional: listar al abrir
     }
 
     /**
@@ -278,9 +278,12 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         // Pide el ID por un cuadro de diálogo
-        String idStr = javax.swing.JOptionPane.showInputDialog(this, "Ingresá ID de alumno:");
-        if (idStr == null || idStr.trim().isEmpty()) return; // Canceló o vacío
-
+        String idStr = javax.swing.JOptionPane.showInputDialog(this,
+            "Ingresá ID de alumno:");
+        if (idStr == null || idStr.trim().
+            isEmpty()) {
+            return; // Canceló o vacío
+        }
         try {
             int id = Integer.parseInt(idStr.trim());
             // Busca en la BD
@@ -291,12 +294,16 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
                 txtDni.setText(String.valueOf(a.getDni()));
                 txtApellido.setText(a.getApellido());
                 txtNombre.setText(a.getNombre());
-                txtFecha.setText(a.getFechaNacimiento().toString()); // yyyy-MM-dd
+                txtFecha.setText(a.getFechaNacimiento().
+                    toString()); // yyyy-MM-dd
                 checkbox1.setState(a.isEstado());
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el alumno.");
             }
-        } catch (NumberFormatException ex) {
+            else {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "No se encontró el alumno.");
+            }
+        }
+        catch (NumberFormatException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "ID inválido.");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -316,13 +323,14 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         // TODO add your handling code here:
         // Necesitamos el ID para marcar estado=false
-        String idTxt = txId.getText().trim();
+        String idTxt = txId.getText().
+            trim();
         if (idTxt.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Primero busca/carga un alumno (ID).");
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Primero busca/carga un alumno (ID).");
             return;
         }
         int id = Integer.parseInt(idTxt);
-
         // Marca baja logica en la BD
         alumnoData.bajaLogica(id);
         // Refresca tabla y limpia formulario
@@ -335,7 +343,6 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
         // Vuelve a cargar todos los alumnos en la tabla
         cargarTabla();
     }//GEN-LAST:event_btnListarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnActualizar;
@@ -360,97 +367,97 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     private java.awt.TextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
+    private void cargarTabla () {
         if (modeloTabla == null) {
-        modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
-    }
-    modeloTabla.setRowCount(0);
-
-    // Cambiá este nombre si tu DAO usa otro para listar
-    java.util.List<Alumno> lista = alumnoData.actualizarAlumno();
-
-    for (Alumno a : lista) {
-        modeloTabla.addRow(new Object[]{
-            a.getIdAlumno(),
-            a.getDni(),
-            a.getApellido(),
-            a.getNombre(),
-            a.getFechaNacimiento(), // LocalDate -> toString
-            a.isEstado()
-        });
-    }
+            modeloTabla = (DefaultTableModel) tbAlumnos.getModel();
+        }
+        modeloTabla.setRowCount(0);
+        // Cambiá este nombre si tu DAO usa otro para listar
+        java.util.List<Alumno> lista = alumnoData.actualizarAlumno();
+        for (Alumno a : lista) {
+            modeloTabla.addRow(new Object[]{
+                a.getIdAlumno(),
+                a.getDni(),
+                a.getApellido(),
+                a.getNombre(),
+                a.getFechaNacimiento(), // LocalDate -> toString
+                a.isEstado()
+            });
+        }
     }
 
-    private void limpiarCampos() {
-    txId.setText("");
-    txtDni.setText("");
-    txtApellido.setText("");
-    txtNombre.setText("");
-    txtFecha.setText("");           // escribir la fecha como yyyy-MM-dd
-    checkbox1.setState(true);
-    txtDni.requestFocus();
-    }    
-    
+    private void limpiarCampos () {
+        txId.setText("");
+        txtDni.setText("");
+        txtApellido.setText("");
+        txtNombre.setText("");
+        txtFecha.setText("");           // escribir la fecha como yyyy-MM-dd
+        checkbox1.setState(true);
+        txtDni.requestFocus();
+    }
+
 // Este mEtodo lee lo que el usuario escribio en los campos del formulario
 // y crea un objeto Alumno con esa informacion.
 // Si conId = true, tambien toma el ID (sirve para modificar o borrar)
-    private Alumno leerFormulario(boolean conId) {
+    private Alumno leerFormulario (boolean conId) {
         // Tomamos el texto de cada campo del formulario
-    String dniStr = txtDni.getText().trim();
-    String ape    = txtApellido.getText().trim();
-    String nom    = txtNombre.getText().trim();
-    String f      = txtFecha.getText().trim();
-    boolean activo = checkbox1.getState();
-
-    // Si el campo fecha aún tiene el texto de ayuda, lo tratamos como vacío
-    if (f.equalsIgnoreCase("(AAAA-MM-DD)")) {
-        f = "";
-    }
-
-    // Verificamos campos vacíos
-    if (dniStr.isEmpty() || ape.isEmpty() || nom.isEmpty() || f.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Completá todos los campos.");
-        return null;
-    }
-
-    // Convertimos DNI a número
-    int dni;
-    try {
-        dni = Integer.parseInt(dniStr);
-    } catch (NumberFormatException ex) {
-        javax.swing.JOptionPane.showMessageDialog(this, "DNI inválido.");
-        return null;
-    }
-
-    // Convertimos fecha a LocalDate (yyyy-MM-dd)
-    java.time.LocalDate fecha;
-    try {
-        fecha = java.time.LocalDate.parse(f, fmt);
-    } catch (java.time.format.DateTimeParseException ex) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Fecha inválida (usar yyyy-MM-dd).");
-        return null;
-    }
-
-    // Creamos objeto Alumno
-    Alumno a = new Alumno();
-
-    // Si es actualización o baja, tomamos también el ID
-    if (conId) {
-        String idTxt = txId.getText().trim();
-        if (idTxt.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Falta el ID para actualizar/baja.");
+        String dniStr = txtDni.getText().
+            trim();
+        String ape = txtApellido.getText().
+            trim();
+        String nom = txtNombre.getText().
+            trim();
+        String f = txtFecha.getText().
+            trim();
+        boolean activo = checkbox1.getState();
+        // Si el campo fecha aún tiene el texto de ayuda, lo tratamos como vacío
+        if (f.equalsIgnoreCase("(AAAA-MM-DD)")) {
+            f = "";
+        }
+        // Verificamos campos vacíos
+        if (dniStr.isEmpty() || ape.isEmpty() || nom.isEmpty() || f.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Completá todos los campos.");
             return null;
         }
-        a.setIdAlumno(Integer.parseInt(idTxt));
-}
-    
+        // Convertimos DNI a número
+        int dni;
+        try {
+            dni = Integer.parseInt(dniStr);
+        }
+        catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "DNI inválido.");
+            return null;
+        }
+        // Convertimos fecha a LocalDate (yyyy-MM-dd)
+        java.time.LocalDate fecha;
+        try {
+            fecha = java.time.LocalDate.parse(f, fmt);
+        }
+        catch (java.time.format.DateTimeParseException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Fecha inválida (usar yyyy-MM-dd).");
+            return null;
+        }
+        // Creamos objeto Alumno
+        Alumno a = new Alumno();
+        // Si es actualización o baja, tomamos también el ID
+        if (conId) {
+            String idTxt = txId.getText().
+                trim();
+            if (idTxt.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Falta el ID para actualizar/baja.");
+                return null;
+            }
+            a.setIdAlumno(Integer.parseInt(idTxt));
+        }
 // Asignamos los demás valores
-    a.setDni(dni);
-    a.setApellido(ape);
-    a.setNombre(nom);
-    a.setFechaNacimiento(fecha);
-    a.setEstado(activo);
-
-    return a;
+        a.setDni(dni);
+        a.setApellido(ape);
+        a.setNombre(nom);
+        a.setFechaNacimiento(fecha);
+        a.setEstado(activo);
+        return a;
     }
 }

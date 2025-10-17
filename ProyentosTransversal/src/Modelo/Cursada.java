@@ -6,67 +6,71 @@ package Modelo;
 
 /**
  *
- * @author Federico Galan
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class Cursada {
+
     private int idInscripto;
     private Alumno alumno;
     private Materia materia;
     private double nota;
 
-    public Cursada() {}
+    public Cursada () {
+    }
 
-    public Cursada(Alumno alumno, Materia materia, double nota) {
+    public Cursada (Alumno alumno, Materia materia, double nota) {
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
     }
 
-    public Cursada(int idInscripto, Alumno alumno, Materia materia, double nota) {
+    public Cursada (int idInscripto, Alumno alumno, Materia materia, double nota) {
         this.idInscripto = idInscripto;
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
     }
 
-    public int getIdInscripto() {
+    public int getIdInscripto () {
         return idInscripto;
     }
 
-    public void setIdInscripto(int idInscripto) {
+    public void setIdInscripto (int idInscripto) {
         this.idInscripto = idInscripto;
     }
 
-    public Alumno getAlumno() {
+    public Alumno getAlumno () {
         return alumno;
     }
 
-    public void setAlumno(Alumno alumno) {
+    public void setAlumno (Alumno alumno) {
         this.alumno = alumno;
     }
 
-    public Materia getMateria() {
+    public Materia getMateria () {
         return materia;
     }
 
-    public void setMateria(Materia materia) {
+    public void setMateria (Materia materia) {
         this.materia = materia;
     }
 
-    public double getNota() {
+    public double getNota () {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota (double nota) {
         this.nota = nota;
     }
 
     @Override
-    public String toString() {
-        return alumno.getApellido() + ", " + alumno.getNombre() + " - " + materia.getNombre() + " (" + nota + ")";
+    public String toString () {
+        return alumno.getApellido() + ", " + alumno.getNombre() + " - "
+            + materia.getNombre() + " (" + nota + ")";
     }
 
-    public void setIdInscripcion(int aInt) {
+    public void setIdInscripcion (int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

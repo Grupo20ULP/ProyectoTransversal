@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author abate, Gomez Heber, Galan Federico, Carreño Lucas
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class Conexion {
 
@@ -29,7 +30,7 @@ public class Conexion {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 conexion = (Connection) DriverManager.getConnection(URL + DB,
-                    USUARIO, CLAVE);               
+                    USUARIO, CLAVE);
             }
             catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(null,

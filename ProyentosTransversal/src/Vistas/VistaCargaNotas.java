@@ -24,112 +24,106 @@ public class VistaCargaNotas extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel<String> comboModel;
 
     /**
-     * Creates new form VistaCargaNotas
+     * Creates Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+     * Lucas
      */
-    public VistaCargaNotas() {
+    public VistaCargaNotas () {
         initComponents();
         inicializarComponentes();
     }
 
-    private void inicializarComponentes() {
+    private void inicializarComponentes () {
         try {
             // Inicializar AlumnoData
             alumnoData = new AlumnoData();
             cursadaData = new CursadaData();
-            
             modeloTabla = (DefaultTableModel) jTableAlumnos.getModel();
-
             // Inicializar el modelo del combo
             comboModel = new DefaultComboBoxModel<>();
             jComboBoxAlumnos.setModel(comboModel);
-
             // Cargar alumnos
             cargarAlumnosEnComboBox();
-
             // Configurar botones
             jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-
+                public void actionPerformed (java.awt.event.ActionEvent evt) {
                 }
             });
-
             jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                public void actionPerformed (java.awt.event.ActionEvent evt) {
                     cancelar();
                 }
             });
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             JOptionPane.showMessageDialog(this,
-                    "Error al inicializar: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                "Error al inicializar: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void cargarAlumnosEnComboBox() {
+    private void cargarAlumnosEnComboBox () {
         try {
             comboModel.removeAllElements();
             comboModel.addElement("Seleccione un alumno");
             List<Alumno> alumnos = alumnoData.actualizarAlumno();
-
-            if (alumnos != null && !alumnos.isEmpty()) {
+            if (alumnos != null &&  ! alumnos.isEmpty()) {
                 for (Alumno alumno : alumnos) {
                     String item = alumno.getIdAlumno() + " - "
-                            + alumno.getApellido() + ", "
-                            + alumno.getNombre()
-                            + " (DNI: " + alumno.getDni() + ")";
+                        + alumno.getApellido() + ", "
+                        + alumno.getNombre()
+                        + " (DNI: " + alumno.getDni() + ")";
                     comboModel.addElement(item);
                 }
-            } else {
+            }
+            else {
                 comboModel.addElement("No hay alumnos registrados");
             }
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             JOptionPane.showMessageDialog(this,
-                    "Error al cargar alumnos: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                "Error al cargar alumnos: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
             comboModel.addElement("Error al cargar datos");
         }
     }
 
-    private void cancelar() {
+    private void cancelar () {
         this.dispose();
     }
 
-    private void agregarEventosTabla() {
+    private void agregarEventosTabla () {
         // Listener para doble click en la columna de nota
         jTableAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked (java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     int row = jTableAlumnos.getSelectedRow();
                     int col = jTableAlumnos.getSelectedColumn();
-
                     if (col == 2) { // Solo columna Nota
                         Object value = jTableAlumnos.getValueAt(row, col);
                         System.out.println("Doble click en nota: " + value);
-
                         // Aquí podés abrir un JOptionPane para editar la nota manualmente si querés
                         String input = JOptionPane.showInputDialog(
-                                null,
-                                "Modificar nota:",
-                                value
+                            null,
+                            "Modificar nota:",
+                            value
                         );
                         if (input != null) {
                             try {
                                 double nuevaNota = Double.parseDouble(input);
                                 jTableAlumnos.setValueAt(nuevaNota, row, col);
-                            } catch (NumberFormatException e) {
-                                JOptionPane.showMessageDialog(null, "Valor inválido, debe ser un número.");
+                            }
+                            catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null,
+                                    "Valor inválido, debe ser un número.");
                             }
                         }
                     }
                 }
             }
         });
-
     }
 
     /**
@@ -261,126 +255,133 @@ public class VistaCargaNotas extends javax.swing.JInternalFrame {
         int index = jComboBoxAlumnos.getSelectedIndex();
         if (index <= 0) {
             // Limpia la tabla si no hay selección válida
-            ((javax.swing.table.DefaultTableModel) jTableAlumnos.getModel()).setRowCount(0);
+            ((javax.swing.table.DefaultTableModel) jTableAlumnos.getModel()).
+                setRowCount(0);
             return;
         }
-
         try {
             // Extraer ID del alumno del texto del combo
             String item = (String) jComboBoxAlumnos.getSelectedItem();
             int idAlumno = Integer.parseInt(item.split(" - ")[0].trim());
-
             // Obtener las cursadas del alumno
-            Persistencia.CursadaData cursadaData = new Persistencia.CursadaData();
-            java.util.List<Modelo.Cursada> cursadas = cursadaData.obtenerCursadasPorAlumno(idAlumno);
-
+            Persistencia.CursadaData cursadaData
+                = new Persistencia.CursadaData();
+            java.util.List<Modelo.Cursada> cursadas = cursadaData.
+                obtenerCursadasPorAlumno(idAlumno);
             // Cargar datos en la tabla
             javax.swing.table.DefaultTableModel modeloTabla
-                    = (javax.swing.table.DefaultTableModel) jTableAlumnos.getModel();
+                = (javax.swing.table.DefaultTableModel) jTableAlumnos.getModel();
             modeloTabla.setRowCount(0); // Limpia tabla
-
             for (Modelo.Cursada cursada : cursadas) {
                 modeloTabla.addRow(new Object[]{
-                    cursada.getAlumno().getApellido() + ", " + cursada.getAlumno().getNombre(),
-                    cursada.getMateria().getNombre(),
+                    cursada.getAlumno().
+                    getApellido() + ", " + cursada.getAlumno().
+                    getNombre(),
+                    cursada.getMateria().
+                    getNombre(),
                     cursada.getNota()
                 });
             }
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error al cargar las notas: " + e.getMessage(),
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                "Error al cargar las notas: " + e.getMessage(),
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
-     int indexCombo = jComboBoxAlumnos.getSelectedIndex();
-    if (indexCombo <= 0) {
-        JOptionPane.showMessageDialog(this, "Seleccione un alumno para guardar las notas.");
-        return;
-    }
-
-    try {
-        String item = (String) jComboBoxAlumnos.getSelectedItem();
-        int idAlumno = Integer.parseInt(item.split(" - ")[0].trim());
-
-        AlumnoData ad = new AlumnoData();
-        Alumno alumno = ad.buscarAlumnoPorId(idAlumno);
-
-        CursadaData cd = new CursadaData();
-        MateriaData md = new MateriaData();
-        List<Materia> todasMaterias = md.obtenerMaterias();
-
-        DefaultTableModel modelo = (DefaultTableModel) jTableAlumnos.getModel();
-
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            String nombreMateria = ((String) modelo.getValueAt(i, 1)).trim();
-            double nota = 0;
-            Object valor = modelo.getValueAt(i, 2);
-            if (valor != null) {
-                nota = Double.parseDouble(valor.toString());
-            }
-
-            // Encontrar la materia correcta
-            Materia materia = null;
-            for (Materia m : todasMaterias) {
-                if (m.getNombre().trim().equalsIgnoreCase(nombreMateria)) {
-                    materia = m;
-                    break;
-                }
-            }
-
-            if (materia == null) continue;
-
-            // Verificar si ya existe la cursada
-            Cursada cursadaExistente = null;
-            List<Cursada> cursadasAlumno = cd.obtenerCursadasPorAlumno(idAlumno);
-            for (Cursada c : cursadasAlumno) {
-                if (c.getMateria().getIdMateria() == materia.getIdMateria()) {
-                    cursadaExistente = c;
-                    break;
-                }
-            }
-
-            if (cursadaExistente != null) {
-                // Actualiza nota
-                cd.actualizarNota(idAlumno, materia.getIdMateria(), nota);
-            } else {
-                // Inserta nueva cursada
-                Cursada nueva = new Cursada();
-                nueva.setAlumno(alumno);
-                nueva.setMateria(materia);
-                nueva.setNota(nota);
-                cd.guardarCursada(nueva);
-            }
+        int indexCombo = jComboBoxAlumnos.getSelectedIndex();
+        if (indexCombo <= 0) {
+            JOptionPane.showMessageDialog(this,
+                "Seleccione un alumno para guardar las notas.");
+            return;
         }
-
-        // Recargar tabla desde BD para asegurar que está sincronizada
-        cargarCursadasTabla(idAlumno);
-
-        JOptionPane.showMessageDialog(this, "Notas guardadas correctamente.");
-
-    } catch (NumberFormatException nfe) {
-        JOptionPane.showMessageDialog(this, "Formato de nota inválido, debe ser un número.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al guardar notas: " + e.getMessage());
+        try {
+            String item = (String) jComboBoxAlumnos.getSelectedItem();
+            int idAlumno = Integer.parseInt(item.split(" - ")[0].trim());
+            AlumnoData ad = new AlumnoData();
+            Alumno alumno = ad.buscarAlumnoPorId(idAlumno);
+            CursadaData cd = new CursadaData();
+            MateriaData md = new MateriaData();
+            List<Materia> todasMaterias = md.obtenerMaterias();
+            DefaultTableModel modelo = (DefaultTableModel) jTableAlumnos.
+                getModel();
+            for (int i = 0; i < modelo.getRowCount(); i ++) {
+                String nombreMateria = ((String) modelo.getValueAt(i, 1)).trim();
+                double nota = 0;
+                Object valor = modelo.getValueAt(i, 2);
+                if (valor != null) {
+                    nota = Double.parseDouble(valor.toString());
+                }
+                // Encontrar la materia correcta
+                Materia materia = null;
+                for (Materia m : todasMaterias) {
+                    if (m.getNombre().
+                        trim().
+                        equalsIgnoreCase(nombreMateria)) {
+                        materia = m;
+                        break;
+                    }
+                }
+                if (materia == null) {
+                    continue;
+                }
+                // Verificar si ya existe la cursada
+                Cursada cursadaExistente = null;
+                List<Cursada> cursadasAlumno = cd.obtenerCursadasPorAlumno(
+                    idAlumno);
+                for (Cursada c : cursadasAlumno) {
+                    if (c.getMateria().
+                        getIdMateria() == materia.getIdMateria()) {
+                        cursadaExistente = c;
+                        break;
+                    }
+                }
+                if (cursadaExistente != null) {
+                    // Actualiza nota
+                    cd.actualizarNota(idAlumno, materia.getIdMateria(), nota);
+                }
+                else {
+                    // Inserta nueva cursada
+                    Cursada nueva = new Cursada();
+                    nueva.setAlumno(alumno);
+                    nueva.setMateria(materia);
+                    nueva.setNota(nota);
+                    cd.guardarCursada(nueva);
+                }
+            }
+            // Recargar tabla desde BD para asegurar que está sincronizada
+            cargarCursadasTabla(idAlumno);
+            JOptionPane.
+                showMessageDialog(this, "Notas guardadas correctamente.");
+        }
+        catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this,
+                "Formato de nota inválido, debe ser un número.");
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar notas: " + e.
+                getMessage());
+        }
     }
-}
 
-private void cargarCursadasTabla(int idAlumno) {
-    DefaultTableModel modelo = (DefaultTableModel) jTableAlumnos.getModel();
-    modelo.setRowCount(0);
-    CursadaData cd = new CursadaData();
-    List<Cursada> cursadas = cd.obtenerCursadasPorAlumno(idAlumno);
-    for (Cursada c : cursadas) {
-        modelo.addRow(new Object[]{
-            c.getAlumno().getApellido() + ", " + c.getAlumno().getNombre(),
-            c.getMateria().getNombre(),
-            c.getNota()
-        });
-    }
+    private void cargarCursadasTabla (int idAlumno) {
+        DefaultTableModel modelo = (DefaultTableModel) jTableAlumnos.getModel();
+        modelo.setRowCount(0);
+        CursadaData cd = new CursadaData();
+        List<Cursada> cursadas = cd.obtenerCursadasPorAlumno(idAlumno);
+        for (Cursada c : cursadas) {
+            modelo.addRow(new Object[]{
+                c.getAlumno().
+                getApellido() + ", " + c.getAlumno().
+                getNombre(),
+                c.getMateria().
+                getNombre(),
+                c.getNota()
+            });
+        }
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

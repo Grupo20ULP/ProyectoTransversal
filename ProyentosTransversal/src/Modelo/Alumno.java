@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 /**
  *
- * @author abate, Gomez Heber, Galan Federico, Carreño Lucas
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class Alumno {
 
@@ -42,7 +43,6 @@ public class Alumno {
     public int getIdAlumno () {
         return idAlumno;
     }
-
 
     public void setIdAlumno (int idAlumno) {
         this.idAlumno = idAlumno;

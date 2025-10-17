@@ -18,7 +18,8 @@ import java.sql.Connection;
 
 /**
  *
- * @author Federico Galan
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class CursadaData {
 

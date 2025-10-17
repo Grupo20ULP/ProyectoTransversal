@@ -19,7 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Juan
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class VistaInscripciones extends javax.swing.JInternalFrame {
     // Solo tus variables nuevas (Data)
@@ -30,7 +31,7 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaInscripciones
      */
-    public VistaInscripciones() {
+    public VistaInscripciones () {
         initComponents();
         setClosable(true);
         setIconifiable(true);
@@ -48,10 +49,9 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         btnAnularInscripcion.setEnabled(false);
         // Cargar combo de alumnos
         cargarComboAlumnos();
-
     }
 
-    private void cargarComboAlumnos() {
+    private void cargarComboAlumnos () {
         jCBAlumnos.removeAllItems();
         List<Alumno> alumnos = alumnoData.actualizarAlumno(); // trae la lista de alumnos activos
         for (Alumno a : alumnos) {
@@ -59,44 +59,44 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         }
     }
 
-    private void cargarMateriasInscriptas() {
+    private void cargarMateriasInscriptas () {
         Alumno alumno = obtenerAlumnoSeleccionado();
         if (alumno == null) {
             return;
         }
-
         DefaultTableModel model = (DefaultTableModel) tblMaterias.getModel();
         model.setRowCount(0);
-
-        List<Cursada> cursadas = cursadaData.obtenerCursadasPorAlumno(alumno.getIdAlumno());
+        List<Cursada> cursadas = cursadaData.obtenerCursadasPorAlumno(alumno.
+            getIdAlumno());
         for (Cursada c : cursadas) {
-            model.addRow(new Object[]{c.getMateria().getIdMateria(), c.getMateria().getNombre()});
+            model.addRow(new Object[]{c.getMateria().
+                getIdMateria(), c.getMateria().
+                getNombre()});
         }
     }
 
-    private void cargarMateriasNoInscriptas() {
+    private void cargarMateriasNoInscriptas () {
         Alumno alumno = obtenerAlumnoSeleccionado();
         if (alumno == null) {
             return;
         }
-
         DefaultTableModel model = (DefaultTableModel) tblMaterias.getModel();
         model.setRowCount(0);
-
         MateriaData md = new MateriaData();
         List<Materia> todasMaterias = md.obtenerMaterias();
-        List<Cursada> cursadas = cursadaData.obtenerCursadasPorAlumno(alumno.getIdAlumno());
-
+        List<Cursada> cursadas = cursadaData.obtenerCursadasPorAlumno(alumno.
+            getIdAlumno());
         for (Materia m : todasMaterias) {
-            boolean yaInscriptas = cursadas.stream()
-                    .anyMatch(c -> c.getMateria().getIdMateria() == m.getIdMateria());
-            if (!yaInscriptas) {
+            boolean yaInscriptas = cursadas.stream().
+                anyMatch(c -> c.getMateria().
+                getIdMateria() == m.getIdMateria());
+            if ( ! yaInscriptas) {
                 model.addRow(new Object[]{m.getIdMateria(), m.getNombre()});
             }
         }
     }
 
-    private Alumno obtenerAlumnoSeleccionado() {
+    private Alumno obtenerAlumnoSeleccionado () {
         int idx = jCBAlumnos.getSelectedIndex();
         if (idx < 0) {
             return null;
@@ -105,12 +105,12 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         return alumnos.get(idx);
     }
 
-
-    private void jCBAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {
+    private void jCBAlumnosItemStateChanged (java.awt.event.ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             if (jRaBtnInscriptas.isSelected()) {
                 cargarMateriasInscriptas();
-            } else if (jRaBtnNoInscripto.isSelected()) {
+            }
+            else if (jRaBtnNoInscripto.isSelected()) {
                 cargarMateriasNoInscriptas();
             }
         }
@@ -338,7 +338,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
         Alumno alumno = obtenerAlumnoSeleccionado();
         Materia materia = obtenerMateriaSeleccionada();
         if (alumno != null && materia != null) {
-            cursadaData.eliminarCursada(alumno.getIdAlumno(), materia.getIdMateria());
+            cursadaData.eliminarCursada(alumno.getIdAlumno(), materia.
+                getIdMateria());
             cargarMateriasInscriptas();
         }
     }//GEN-LAST:event_btnAnularInscripcionActionPerformed
@@ -350,7 +351,8 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     private void jCBAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAlumnosActionPerformed
         if (jRaBtnInscriptas.isSelected()) {
             cargarMateriasInscriptas();
-        } else if (jRaBtnNoInscripto.isSelected()) {
+        }
+        else if (jRaBtnNoInscripto.isSelected()) {
             cargarMateriasNoInscriptas();
         }
     }//GEN-LAST:event_jCBAlumnosActionPerformed
@@ -370,15 +372,13 @@ public class VistaInscripciones extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblMaterias;
     // End of variables declaration//GEN-END:variables
 
-    private Materia obtenerMateriaSeleccionada() {
+    private Materia obtenerMateriaSeleccionada () {
         int fila = tblMaterias.getSelectedRow(); // fila seleccionada
         if (fila < 0) { // si no seleccionó nada
             return null;
         }
-
         int id = (int) tblMaterias.getValueAt(fila, 0); // columna 0 = ID
         String nombre = (String) tblMaterias.getValueAt(fila, 1); // columna 1 = nombre
-
         MateriaData md = new MateriaData();
         Materia m = md.buscarMateriaPorId(id); // trae el objeto Materia completo desde la DB
         return m;

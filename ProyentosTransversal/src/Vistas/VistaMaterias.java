@@ -14,7 +14,8 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Carreño Lucas
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class VistaMaterias extends javax.swing.JInternalFrame {
 

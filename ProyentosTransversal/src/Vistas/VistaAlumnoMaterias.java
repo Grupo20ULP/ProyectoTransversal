@@ -13,7 +13,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Heber Gomez
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
 
@@ -124,6 +125,7 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxFiltrarMateriaItemStateChanged
 // creamos metodo y listamos las materias que guardamos  
 // y las agregamos al JComboBox para que el usuario pueda seleccionarlas    
+
     private void cargarComboMaterias () {
         List<Materia> materias = materiaData.actualizarmateria();
         for (Materia m : materias) {
@@ -132,6 +134,7 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
     }
 // creamos metodo para armar el jtable 
 // definiendo las columnas que vamos a mostrar    
+
     private void armarCabeceraTabla () {
         modelo.addColumn("ID");
         modelo.addColumn("DNI");
@@ -141,6 +144,7 @@ public class VistaAlumnoMaterias extends javax.swing.JInternalFrame {
     }
 // creamos método para cargar los alumnos inscriptos en la materia seleccionada 
 // y los mostramos en la jtable
+
     private void cargarTablaAlumnos () {
 //      limpiamos la tabla antes de cargar los datos        
         modelo.setRowCount(0);

@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 /**
  *
- * @author Juan
+ * @author Gomez Heber,Carreras Juan, Zerdá Nehuen , Galan Federico, Carreño
+ * Lucas
  */
 public class Materia {
 
